@@ -35,6 +35,18 @@ def deal(num_of_cards):
     return hand
 
 def pair_count(hand):
+    """ Counts and removes pairs from hand
+    
+    This function will count pairs and remove them from the players
+    hand. With each pair removed a point is added
+    
+    Args:
+    hand: A counter set to 0, and a hand that once a the same card gets
+    drawn anything greater than 1, it will respond by removing the card
+    and then the identical card once at a time. It will then add
+    a point to the score. 
+    
+    returns score"""
     score = 0 
     for deck in hand:
         if hand.count(hand) > 1:
