@@ -2,7 +2,7 @@ import random
 
 
 numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
-suits = ['hearts', 'clubs', 'aces', 'spades']
+suits = ['hearts', 'clubs', 'diamonds', 'spades']
 deck = []
 
 def make_deck():
