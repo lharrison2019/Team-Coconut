@@ -1,30 +1,28 @@
-from _typeshed import ReadOnlyBuffer
-
-
 import random
 
 numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
-suit = ['hearts', 'clubs', 'aces', 'spades']
-player1 = list()
-player1_hand = 0 
+suits = ['hearts', 'clubs', 'aces', 'spades']
+deck = []
 
-player2 = list()
-player2_hand = 0
 
-def player_cards():
-    cards = []
-    cards.append([numbers, suit])
-    random.shuffle(cards)
-    return cards
+def make_deck():
+
+    for num in numbers: 
+        for suit in suits: 
+              deck.append([num, suit])
+              
+    random.shuffle(deck)
+    return deck
+
+
+def deal_hand(): 
+    hand = []
     
-
-    for i in range(5):
-        deck  = cards.pop()
-        player1.append(deck)
-
-    for i in range(5):
-        deck = cards.pop()
-        player2.append(deck)
+    for i in range(7):
+        card = random.randint(0, len(deck))
+        hand.append(deck.pop(card))
+    
+    return hand
 
 def pair_count(hand):
     score = 0 
@@ -34,3 +32,33 @@ def pair_count(hand):
             deck.remove(hand)
             deck.remove(hand)
             score += 1 
+
+class Player: 
+    
+    def __init__(self, name, hand, score): 
+        self.name = name
+        self.hand = deal_hand() 
+        self.score = 0 
+        
+    def get_score(self): 
+        return self.score
+    
+    def get_hand(self): 
+        return self.hand 
+    
+    
+
+class HumanPlayer(Player): 
+    
+    super
+    
+    
+class ComputerPlayer(Player): 
+   
+    super
+    
+    def __init__(self, hand, score , name = "Computer"): 
+        self.name = name
+        self.hand = deal_hand() 
+        self.score = 0 
+    
