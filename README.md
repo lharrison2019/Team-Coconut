@@ -1,7 +1,7 @@
 
 An explanation of the purpose of each file in your repository
 
-go_fish.py: 
+go_fish.py: our overall code to play the game go fish in visual studio code without GUI. 
 
 go_fish_with_GUI.py
 
