@@ -15,7 +15,7 @@ ranks = ['2', '3', '4' , '5' ,'6', '7', '8', '9', '10', 'Jack', 'Queen', 'King',
 suits = ['♣️', '♥', '♦', '♠']
 deck = []
 
-def make_deck():
+def make_deck():  
     """Creates deck.
     
     This function will create a list of cards, or a deck, that will contain 52 tuples
@@ -190,7 +190,7 @@ class HumanPlayer(Player):
     super
     
     def request_card(self, other): 
-    
+        
         self.print_board(other)
         while True: 
             req_rank = input(f"\nWhat rank do you request from {other.name}?\n")
@@ -201,7 +201,7 @@ class HumanPlayer(Player):
             else: 
                 break
         
-        sleep(2)
+        sleep(1)
         other.check_hand(self, req_rank)
             
 class ComputerPlayer(Player): 
@@ -248,13 +248,11 @@ class ComputerPlayer(Player):
         
         print(f'\n{self.name} asks {other.name} if they have any {req_rank}s.\n')
         print('🐟-------------🐟')
-        sleep(2)
+        sleep(1)
         
         other.check_hand(self, req_rank)
                
 def main(human_name, computer_name): 
-    
-    
     while True:
         play= input("Would you like to play a game of 🐟Go Fish🐟?")
         
