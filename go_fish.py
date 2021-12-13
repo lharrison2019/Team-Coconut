@@ -125,7 +125,7 @@ class Player:
         is_rank  = [card[0] == req_rank for card in self.hand ]
         cards_given  = []
     
-        for i in range(len(is_rank)): 
+        for i in range(len(is_rank)-1): 
             if is_rank[i]: 
                 card = self.hand.pop(i)
                 cards_given.append(card)
