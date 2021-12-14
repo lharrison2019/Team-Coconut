@@ -11,7 +11,7 @@ GUI.py:
 
 Clear instructions on how to run your program from the command line
 
-In Terminal: 
+In Terminal: There is one expected argument that the human player needs to imput which is their player name. From there the game begins and the human player begins the game of go fish.
 
 
 
