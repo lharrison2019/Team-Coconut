@@ -36,6 +36,9 @@ Once the game is properly run through the command line by typing "python3 go_fis
 An annotated bibliography of all sources you used to develop your project. For each source, explain how you used the source.
 
 
+Attribution: 
+
+
 
 
 
