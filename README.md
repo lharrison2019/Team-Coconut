@@ -47,8 +47,9 @@ draw(self): Subaita
 HumanPlayer request_card(self, other): Subaita
 ComputerPlayer request_card(self, other): Nour
 main(human_name, computer_name): Enrique & Subaita
+GUI: Nour
 
-All though we wrote down these specific contributions it is important to note that this was a collaborative effort and most of the time each member had some sort of contribution to everything even if it was small.
+All though we wrote down these specific contributions it is important to note that this was a collaborative effort and most of the time each member had some sort of contribution to everything even if it was small. The GUI section was completely Nour and she decided to figure this out on her own to make our game look much more presentable to a player, which was a wonderful addition to the project. 
 
 
 
