@@ -36,6 +36,19 @@ Once the game is properly run through the command line by typing "python3 go_fis
 An annotated bibliography of all sources you used to develop your project. For each source, explain how you used the source.
 
 
+**Attribution -** Author of each method/function:
+make_deck(): Lindsay
+deal(num_of_cards): Nour
+end_game(player_one, player_two): Subaita
+__init__(self, name): Nour
+print_board(self, other): Enrique
+check_hand(self, other, req_rank): Lindsay & Nour
+has_book(self): Enrique
+draw(self): Subaita
+HumanPlayer request_card(self, other): Subaita
+ComputerPlayer request_card(self, other): Nour
+main(human_name, computer_name): Enrique & Subaita
+
 
 
 
