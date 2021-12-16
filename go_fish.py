@@ -3,7 +3,6 @@
 Attributes: 
     ranks: list containing string values representing different card ranks 
     suits: list containing string values representing different card suits
-    deck: list containing 52 tuples that represent the cards in a deck
 """
 
 from random import *
@@ -38,7 +37,8 @@ def deal(num_of_cards, deck):
 
     Args: 
         num_of_cards: int representing the amount of cards that 
-        will be taken from the deck and returns to the player. 
+            will be taken from the deck and returns to the player. 
+        deck: list containing cards representing a deck
         
     Returns: 
         hand: list of cards that will be returned to the player. 
@@ -59,6 +59,11 @@ def end_game(player_one, player_two, deck):
     in their hand or there are no cards in the deck. This function will check 
     for both and will return True is the game has come to an end. 
     
+    Args: 
+        player_one: Player object represeting the first player 
+        player_two: Player object represeting the second player
+        deck: list containing cards representing a deck
+        
     Returns: 
         boolean: true if either play has no cards in their hand or 
             deck doesnt contain any cards, false if not. 
@@ -90,7 +95,10 @@ class Player:
     def print_board(self,other):
         """Prints cards. 
         
-        Prints the cards in player's hand. 
+        Prints the cards in player's hand.
+        
+        Args: 
+            other: Player object representing other player 
         
         Side effects: 
             prints out players hand.
@@ -104,7 +112,7 @@ class Player:
         print(f'\n\nScore: {self.name} = {self.score} ||| {other.name} = {other.score}')
         print('\n🐟-------------🐟')
         
-    def check_hand(self, other, req_rank,deck): 
+    def check_hand(self, other, req_rank, deck): 
         """Checks hand for requested rank
         
         This method will check this player's(self) hand for a requested rank from 
@@ -115,7 +123,8 @@ class Player:
         
         Args: 
             other: object representing other player 
-            req_rank: string containing rank that is being requested by other player  
+            req_rank: string containing rank that is being requested by other player
+            deck: list of tuples representing cards, formated as (rank, suit)
         
         Side effects: 
             If applicable, this method will add cards to other.hand and will remove 
@@ -146,7 +155,7 @@ class Player:
         those cards from the player's(self) hand and add a single point 
         to the player's score. This can only happen once per turn. 
         
-        Returns
+        Returns:
             boolean: true if the player's hand contains a book, false otherwise 
             
         Side effects: 
@@ -173,6 +182,9 @@ class Player:
         This method will draw one randomly selected card from the deck 
         using the deal() function and add it to the player's hand. 
         
+        Args: 
+            deck: list of tuples representing cards, formated as (rank, suit)
+        
         Side effects : 
             adds one card to the player's hand(self.hand)
         """
@@ -190,6 +202,18 @@ class HumanPlayer(Player):
     super
     
     def request_card(self, other, deck): 
+        """Requests a card. 
+        
+        This method will ask the player for what rank they request and 
+        will use the check_hand method to see if the other player contains 
+        card(s) in their hand.
+        
+        Args: 
+            other: other player in the game
+            deck: list of tuples representing cards, formated as (rank, suit)
+        Side effects: 
+            prints on the board asking for the requested rank from the user. 
+        """
         
         self.print_board(other)
         while True: 
@@ -229,8 +253,12 @@ class ComputerPlayer(Player):
         a rank will be randomly selected from the whole hand (self.hand). 
         
         Returns: 
-            req_rank: a string containing the rank the computer player requests. 
-
+            
+            other: other player in the game
+            deck: list of cards representing the deck.
+            
+        Side effects: 
+            prints on the board asking for the requested rank from the user. 
         """
         
         ranks_in_hand = [card[0]for card in self.hand]
@@ -253,6 +281,24 @@ class ComputerPlayer(Player):
         other.check_hand(self, req_rank, deck)
                
 def main(human_name, computer_name): 
+    """Runs the game.
+    
+    The main function will create the deck and the 
+    two instances of the HumanPlayer and the ComputerPlayer.
+    It will then proceed to run the game by calling on the 
+    request_card() and has_book() for each player. 
+    
+    Args: 
+        human_name: string containing the chosen name of the 
+            HumanPlayer.
+        computer_name:string contianing the chosen name of the 
+            ComputerPlayer. 
+    
+    Side effects: 
+        Creates instances of the HumanPlayer and ComputerPlayer 
+        class. 
+    
+    """
     while True:
         play= input("Would you like to play a game of 🐟Go Fish🐟?")
         
