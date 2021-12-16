@@ -13,7 +13,6 @@ from time import sleep
 
 ranks = ['2', '3', '4' , '5' ,'6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
 suits = ['♣️', '♥', '♦', '♠']
-deck = []
 
 def make_deck():  
     """Creates deck.
@@ -24,13 +23,14 @@ def make_deck():
     Returns: 
         deck: list of tuples representing cards, formated as (rank, suit)
     """
+    deck = []
     for rank in ranks: 
         for suit in suits: 
               deck.append((rank, suit))
     shuffle(deck)
     return deck
 
-def deal(num_of_cards): 
+def deal(num_of_cards, deck): 
     """Deals player hands from Deck. 
     
     This function will take a specified number of cards from the deck 
@@ -51,7 +51,7 @@ def deal(num_of_cards):
     
     return hand            
 
-def end_game(player_one, player_two): 
+def end_game(player_one, player_two, deck): 
     """Determines if game will end.
     
     This function will determine if the game will end. There are two instances
@@ -81,9 +81,9 @@ class Player:
         score: int representing the players score.
 
     """
-    def __init__(self, name): 
+    def __init__(self, name, deck): 
         self.name = name
-        self.hand = deal(7) 
+        self.hand = deal(7,deck) 
         self.hand.sort()
         self.score = 0 
           
@@ -104,7 +104,7 @@ class Player:
         print(f'\n\nScore: {self.name} = {self.score} ||| {other.name} = {other.score}')
         print('\n🐟-------------🐟')
         
-    def check_hand(self, other, req_rank): 
+    def check_hand(self, other, req_rank,deck): 
         """Checks hand for requested rank
         
         This method will check this player's(self) hand for a requested rank from 
@@ -132,7 +132,7 @@ class Player:
         sleep(1)
         if len(cards_given) == 0 : 
             print(f"\nSorry! {self.name} had no {req_rank}s! Go Fish!\n","🐟-------------🐟")
-            self.draw()
+            self.draw(deck)
         else: 
             print(f'\n {self.name} has {req_rank}!\n🐟-------------🐟')
             other.hand.extend(cards_given)
@@ -167,7 +167,7 @@ class Player:
                 print(f'\n{self.name} has a book! One point is added to their score.\n',
                       '\n🐟-------------🐟\n')            
             
-    def draw(self):
+    def draw(self, deck):
         """Draws one card. 
         
         This method will draw one randomly selected card from the deck 
@@ -176,7 +176,7 @@ class Player:
         Side effects : 
             adds one card to the player's hand(self.hand)
         """
-        self.hand.extend(deal(1))
+        self.hand.extend(deal(1, deck))
                   
 class HumanPlayer(Player): 
     """Child Class of Player Class representing the human player. 
@@ -189,7 +189,7 @@ class HumanPlayer(Player):
     """
     super
     
-    def request_card(self, other): 
+    def request_card(self, other, deck): 
         
         self.print_board(other)
         while True: 
@@ -202,7 +202,7 @@ class HumanPlayer(Player):
                 break
         
         sleep(1)
-        other.check_hand(self, req_rank)
+        other.check_hand(self, req_rank, deck)
             
 class ComputerPlayer(Player): 
     """Child Class of Player Class representing the computer player. 
@@ -216,7 +216,7 @@ class ComputerPlayer(Player):
     """
     super
     
-    def request_card(self, other):
+    def request_card(self, other, deck):
         """Requests a card. 
         
         This method will request a card in one of two ways. First, the method
@@ -250,7 +250,7 @@ class ComputerPlayer(Player):
         print('🐟-------------🐟')
         sleep(1)
         
-        other.check_hand(self, req_rank)
+        other.check_hand(self, req_rank, deck)
                
 def main(human_name, computer_name): 
     while True:
@@ -259,17 +259,17 @@ def main(human_name, computer_name):
         if play.lower() != 'yes': 
             break
         
-        make_deck()
+        deck = make_deck()
         
-        human_player =  HumanPlayer(human_name)
-        computer_player =  ComputerPlayer(computer_name)
+        human_player =  HumanPlayer(human_name, deck)
+        computer_player =  ComputerPlayer(computer_name,deck)
 
         print('\n\nWelcome to Go Fish!\n\n🐟-------------🐟\n')
         
-        while end_game(human_player,computer_player) == False:
-            human_player.request_card(computer_player)
+        while end_game(human_player,computer_player, deck) == False:
+            human_player.request_card(computer_player, deck)
             human_player.has_book()
-            computer_player.request_card(human_player)
+            computer_player.request_card(human_player, deck)
             computer_player.has_book()
         
         if human_player.score > computer_player.score: 
