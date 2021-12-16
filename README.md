@@ -39,6 +39,10 @@ This tutorital was used for creating and setting up the different panels and add
 This is the offical documentation for the module, tkinter. Nour used this documentation as a general reference for creating the different widgets used in the 
 GUI.py script. 
 
+“Go Fish Rules and Gameplay.” Ducksters, https://www.ducksters.com/games/go_fish_rules.php. 
+
+We used this as a reference for the rules of go fish.
+
 
 Attributions: Author of each method/function
 make_deck(): Lindsay 
